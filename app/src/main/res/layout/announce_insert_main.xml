@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/login_background"
+    android:background="@drawable/gongji_bg"
     tools:context=".AnounceActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="69dp"
-        android:background="@drawable/line">
+        android:background="@drawable/line4">
         <TextView
             android:id="@+id/back_button"
             android:layout_width="135dp"
@@ -34,9 +34,10 @@
     </LinearLayout>
 
     <ImageView
+        android:layout_marginTop="40dp"
         android:id="@+id/MikeBtn"
-        android:layout_width="330dp"
-        android:layout_height="340dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         android:background="@drawable/mike_1" />
     <RelativeLayout

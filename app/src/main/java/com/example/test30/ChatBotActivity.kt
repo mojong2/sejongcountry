@@ -2,6 +2,7 @@ package com.example.test30
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Typeface
 import android.net.ConnectivityManager
@@ -37,6 +38,8 @@ import com.ibm.watson.speech_to_text.v1.model.SpeechRecognitionResults
 import com.ibm.watson.speech_to_text.v1.websocket.BaseRecognizeCallback
 import com.ibm.watson.text_to_speech.v1.TextToSpeech
 import kotlinx.android.synthetic.main.content_chat_room.*
+import kotlinx.android.synthetic.main.content_chat_room.back_button
+import kotlinx.android.synthetic.main.gune_main.*
 import java.io.InputStream
 import java.util.*
 
@@ -72,7 +75,6 @@ class ChatBotActivity : AppCompatActivity() {
         speechService!!.serviceUrl = mContext!!.getString(R.string.STT_url)
 
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -131,10 +133,10 @@ class ChatBotActivity : AppCompatActivity() {
             override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
             }
             fun onClick(view: View?, position: Int) {
-                val audioMessage = messageArrayList.get(position) as Message
-                if (audioMessage != null && !audioMessage.message!!.isEmpty()) {
-                    ttsSpeak(audioMessage.message.toString())
-                }
+//                val audioMessage = messageArrayList.get(position) as Message
+//                if (audioMessage != null && !audioMessage.message!!.isEmpty()) {
+//                    ttsSpeak(audioMessage.message.toString())
+//                }
             }
             fun onLongClick(view: View?, position: Int) {
                 recordMessage()
@@ -164,6 +166,22 @@ class ChatBotActivity : AppCompatActivity() {
             }
         })
         btn_record.setOnClickListener(View.OnClickListener { recordMessage() })
+        back_button.setOnClickListener({
+            if(MySharedPreferences.getUserType(this).equals("0")) {
+                val intent = Intent(this, MainActivity2::class.java)
+                startActivity(intent)
+                ActivityCompat.finishAffinity(this)
+                overridePendingTransition(R.anim.slide_left_enter,R.anim.slide_left_exit)
+                finish()
+            }
+            else if(MySharedPreferences.getUserType(this).equals("1")) {
+                val intent = Intent(this, MainActivity3::class.java)
+                startActivity(intent)
+                ActivityCompat.finishAffinity(this)
+                overridePendingTransition(R.anim.slide_left_enter,R.anim.slide_left_exit)
+                finish()
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -463,5 +481,21 @@ class ChatBotActivity : AppCompatActivity() {
         private const val REQUEST_RECORD_AUDIO_PERMISSION = 200
         private const val TAG = "MainActivity"
         private const val RECORD_REQUEST_CODE = 101
+    }
+    override fun onBackPressed() {
+        if(MySharedPreferences.getUserType(this).equals("0")) {
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
+            ActivityCompat.finishAffinity(this)
+            overridePendingTransition(R.anim.slide_left_enter,R.anim.slide_left_exit)
+            finish()
+        }
+        else if(MySharedPreferences.getUserType(this).equals("1")) {
+            val intent = Intent(this, MainActivity3::class.java)
+            startActivity(intent)
+            ActivityCompat.finishAffinity(this)
+            overridePendingTransition(R.anim.slide_left_enter,R.anim.slide_left_exit)
+            finish()
+        }
     }
 }

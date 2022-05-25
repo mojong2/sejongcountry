@@ -32,6 +32,7 @@ class MainActivity3 : AppCompatActivity() {
 
         ge_button.setOnClickListener({
             ge_button.visibility = View.GONE
+
             gun_button.visibility = View.VISIBLE
             gong_button.visibility = View.VISIBLE
         })
@@ -80,7 +81,7 @@ class MainActivity3 : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_right_enter,R.anim.slide_right_exit)
         })
         user_menu1.setOnClickListener({
-            val intent = Intent(this, UserMenuActivity::class.java)
+            val intent = Intent(this, Splash::class.java)
             startActivity(intent)
             ActivityCompat.finishAffinity(this)
             overridePendingTransition(R.anim.slide_right_enter,R.anim.slide_right_exit)

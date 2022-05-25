@@ -409,7 +409,7 @@ class CreateIdActivity : AppCompatActivity() {
                         all_input.visibility = View.INVISIBLE
                         number_input.visibility= View.VISIBLE
                         checkPn.visibility = View.VISIBLE
-                        userAddress = all_input.getText().toString()
+                        userAddress = kakao_address.getText().toString() + " " + all_input.getText().toString()
                         ex_main.setText(null)
                         all_input.setText(null)
                         seq++
@@ -732,12 +732,12 @@ class CreateIdActivity : AppCompatActivity() {
         }
 
         webView.apply {
-            addJavascriptInterface(WebViewData(), "php에서 적용한 name")
+            addJavascriptInterface(WebViewData(), "Leaf")
             webViewClient = client
             webChromeClient = chromeClient
-            loadUrl("내 주소")
+            loadUrl("http://sejongcountry.dothome.co.kr/KakaoAddress.php")
         }
-        webView.visibility = View.GONE
+        webView.visibility = View.INVISIBLE
     }
 
     private val client: WebViewClient = object : WebViewClient() {
@@ -768,8 +768,12 @@ class CreateIdActivity : AppCompatActivity() {
 
     private val chromeClient = object : WebChromeClient() {
 
-        fun onCreateWindow(view: WebView?, isDialog: Boolean, isUserGesture: Boolean, resultMsg: Message?): Boolean {
-
+        override fun onCreateWindow(
+            view: WebView?,
+            isDialog: Boolean,
+            isUserGesture: Boolean,
+            resultMsg: android.os.Message?
+        ): Boolean {
             val newWebView = WebView(this@CreateIdActivity)
 
             newWebView.settings.javaScriptEnabled = true
@@ -796,10 +800,11 @@ class CreateIdActivity : AppCompatActivity() {
                 }
             }
 
-//            (resultMsg!!.obj as WebView.WebViewTransport).webView = newWebView
-//            resultMsg.sendToTarget()
+            (resultMsg!!.obj as WebView.WebViewTransport).webView = newWebView
+            resultMsg.sendToTarget()
 
             return true
+            //return super.onCreateWindow(view, isDialog, isUserGesture, resultMsg)
         }
     }
 }

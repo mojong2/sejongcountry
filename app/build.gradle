@@ -46,6 +46,10 @@ android {
 
 
 dependencies {
+    implementation "io.github.ParkSangGwon:tedpermission:2.3.0"
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
+
     implementation group: 'de.svenkubiak', name: 'jBCrypt', version: '0.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'

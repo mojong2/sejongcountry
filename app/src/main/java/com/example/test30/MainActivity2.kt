@@ -1,24 +1,59 @@
 package com.example.test30
 
+import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.telephony.SmsManager
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.real_main.*
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.util.jar.Manifest
 
 class MainActivity2 : AppCompatActivity() {
     var mBackWait : Long = 0
+
+    private val multiplePermissionsCode = 100
+    private val requiredPermissions = arrayOf(
+        android.Manifest.permission.SEND_SMS,
+        android.Manifest.permission.RECEIVE_SMS
+    )
+    var PHONE = ""
+    var MESSAGE = ""
+    var smsManager = SmsManager.getDefault()
+    var userId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.real_main)
+
+        checkPermissions()
+
+        //SharedPreferences에 값이 저장되어있지 않을 때
+        if(MySharedPreferences.getUserId(this).isNullOrBlank() || MySharedPreferences.getUserPw(this).isNullOrBlank() || MySharedPreferences.getUserType(this).isNullOrBlank()) {
+
+        }
+        else {  //SharedPreferences에 값이 저장되어 있을 때
+            userId = MySharedPreferences.getUserId(this)
+        }
+
         singo_button.setOnLongClickListener({
-            Toast.makeText(applicationContext,"구급차를 요청했습니다",Toast.LENGTH_SHORT).show()
+            sendSms(userId)
+            Toast.makeText(applicationContext,"보호자에게 긴급문자가 전송되었습니다.",Toast.LENGTH_SHORT).show()
             true
         })
 
@@ -81,5 +116,76 @@ class MainActivity2 : AppCompatActivity() {
             time3 = time1
             Toast.makeText(applicationContext, "한번 더 누르시면 종료됩니다.",Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun checkPermissions() {
+        var rejectedPermissionList = ArrayList<String>()
+
+        for(permission in requiredPermissions) {
+            if(ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                rejectedPermissionList.add(permission)
+            }
+        }
+
+        if(rejectedPermissionList.isNotEmpty()) {
+            val array = arrayOfNulls<String>(rejectedPermissionList.size)
+            ActivityCompat.requestPermissions(this, rejectedPermissionList.toArray(array), multiplePermissionsCode)
+        }
+    }
+
+    //권한 요청 결과함수
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode) {
+            multiplePermissionsCode -> {
+                if(grantResults.isNotEmpty()) {
+                    for((i, permission) in permissions.withIndex()) {
+                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                            //권한 획득 실패
+                            Log.i("TAG", "The user has denied to $permission")
+                            Log.i("TAG", "I can't work for you anymore then. ByeBye!")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun sendSms(ID: String) {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://sejongcountry.dothome.co.kr/")
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(SmsInterface::class.java)
+        val call: Call<String> = service.sendSms(ID)
+        call.enqueue(object: Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if(response.isSuccessful && response.body() != null) {
+                    var result = response.body().toString()
+                    Log.d("Reg", "onResponse Success : " + response.toString())
+                    Log.d("Reg", "onResponse Success : " + result)
+
+                    val info = JSONObject(result)
+                    val NAME = info.getString("NAME")
+                    PHONE = info.getString("PHONE")
+
+                    MESSAGE = NAME + "님께서 긴급호출을 요청하였습니다."
+
+                    smsManager.sendTextMessage(PHONE, null, MESSAGE, null, null)
+                }
+                else {
+                    Log.d("Reg", "onResponse Failed")
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Log.d("Reg", "error : " + t.message.toString())
+            }
+        })
     }
 }

@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/activity_widget_config.xml" value="0.35520833333333335" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/announce_insert_main.xml" value="0.22" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/announce_list_item.xml" value="0.33469202898550726" />
@@ -21,11 +21,15 @@
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/gongji_insert_main.xml" value="0.33469202898550726" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/gongji_main.xml" value="0.33469202898550726" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/gongji_opinion_main.xml" value="0.33469202898550726" />
+        <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/item_list_weather1.xml" value="0.34103260869565216" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/item_list_weather2.xml" value="0.18020833333333333" />
+        <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/login_main.xml" value="0.34103260869565216" />
+        <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/push_alarm.xml" value="0.34103260869565216" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/real_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/real_main_admin.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/setting_main.xml" value="0.33469202898550726" />
-        <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/user_menu.xml" value="0.33469202898550726" />
+        <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/user_menu.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/layout/weather_appwidget.xml" value="0.34103260869565216" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1935" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.xml" value="0.1935" />
         <entry key="..\:/Users/GooJongMo/AndroidStudioProjects/final-test30-master/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.xml" value="0.1935" />

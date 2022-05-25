@@ -4,10 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/login_background">
+    android:background="@drawable/gongji_bg">
 
     <LinearLayout
         android:id="@+id/base_name"
@@ -31,46 +29,91 @@
             android:textSize="30dp"
             android:textStyle="bold" />
     </LinearLayout>
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="mm/dd의 날씨"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:layout_margin="10dp"
-        android:gravity="center"/>
-    <TextView
-        android:id="@+id/tvError"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="에러 : "
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:visibility="gone"/>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="560dp"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/weatherRecyclerView1"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/tvDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="mm/dd의 날씨"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+            <TextView
+                android:id="@+id/tvError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="에러 : "
+                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:visibility="gone"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/weatherRecyclerView2"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/tvDate"
+                android:background="@drawable/line1"
+                android:id="@+id/weatherRecyclerView1"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/weatherRecyclerView1"
+                android:background="@drawable/line1"
+                android:id="@+id/weatherRecyclerView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <RelativeLayout
+                android:id="@+id/empty_view1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/weatherRecyclerView2"
+                android:background="@drawable/line1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="현재 마을 회관 사람 수"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/member_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="100dp"
+                    android:text="0명"
+                    android:textColor="@color/black"
+                    android:textSize="30dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 
     <Button
+        android:layout_gravity="center"
         android:id="@+id/btnRefresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:text="새로고침"/>
 
 </LinearLayout>

@@ -181,7 +181,7 @@ class SubActivity : AppCompatActivity() {
                         val WDAY1 = LocalDateTime.parse(CRTD, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
                         val WDAY2 = WDAY1.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"))
 
-                        items.add(ListViewItem(ContextCompat.getDrawable(SubActivity.SubActivityContext(), R.drawable.yellow_star)!!, TITLE, WDAY2, NO))
+                        items.add(ListViewItem(ContextCompat.getDrawable(SubActivity.SubActivityContext(), R.drawable.important_image)!!, TITLE, WDAY2, NO))
 
                         i++
                     }

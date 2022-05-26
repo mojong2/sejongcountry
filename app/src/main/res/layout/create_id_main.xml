@@ -74,12 +74,13 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="40dp"
             android:backgroundTint="@color/black"
-            android:hint="주소 입력하기"
             android:focusable="false"
+            android:hint="주소 입력하기"
             android:textColor="@color/black"
             android:textColorHint="#4C4C4C"
             android:textSize="35dp"
             android:visibility="invisible" />
+
     </RelativeLayout>
 
     <LinearLayout
